@@ -1,0 +1,7 @@
+/build/
+
+# Ansible local artifacts
+ansible/*.retry
+
+.vscode/
+.env

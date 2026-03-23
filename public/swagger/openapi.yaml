@@ -1,0 +1,52 @@
+openapi: 3.0.0
+info:
+  title: Simian DNA API
+  version: 1.0.0
+  description: API to detect simian DNA
+
+paths:
+  /simian:
+    post:
+      summary: Check if DNA is simian
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dna:
+                  type: array
+                  items:
+                    type: string
+                  example:
+                    ["ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"]
+      responses:
+        "200":
+          description: DNA is simian
+        "403":
+          description: DNA is human
+        "400":
+          description: Invalid input
+
+  /stats:
+    get:
+      summary: Get DNA statistics
+      responses:
+        "200":
+          description: Statistics
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count_mutant_dna:
+                    type: integer
+                  count_human_dna:
+                    type: integer
+                  ratio:
+                    type: number
+              example:
+                count_mutant_dna: 40
+                count_human_dna: 100
+                ratio: 0.4

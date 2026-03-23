@@ -1,0 +1,17 @@
+# Build artifacts
+build/
+CMakeFiles/
+CMakeCache.txt
+
+# Git
+.git/
+.gitignore
+
+# OS files
+*.swp
+*.log
+.DS_Store
+
+# Binaries
+*.o
+*.out
