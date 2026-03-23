@@ -19,7 +19,7 @@
           - ca-certificates
           - git
           - docker.io
-          - docker-compose-plugin
+          - docker-compose
         state: present
         update_cache: true
 
