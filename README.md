@@ -4,8 +4,8 @@ A C++17 REST API built with Crow to detect simian DNA sequences and expose aggre
 
 ## Features
 
-- `POST /v1/simian`: classify a DNA matrix as simian or human
-- `GET /v1/stats`: return aggregate counts and ratio
+- `POST /simian`: classify a DNA matrix as simian or human
+- `GET /stats`: return aggregate counts and ratio
 - PostgreSQL persistence
 - Flyway migrations via Docker Compose
 - Swagger UI docs served from the app
@@ -16,7 +16,7 @@ A C++17 REST API built with Crow to detect simian DNA sequences and expose aggre
 - [Crow](https://crowcpp.org/)
 - PostgreSQL 15
 - Flyway
-- CMake + vcpkg
+- CMake
 - Docker / Docker Compose
 
 ## Project Structure
@@ -41,8 +41,8 @@ A C++17 REST API built with Crow to detect simian DNA sequences and expose aggre
 
 ## API Endpoints
 
-- `POST /v1/simian`
-- `GET /v1/stats`
+- `POST /simian`
+- `GET /stats`
 - `GET /docs`
 - `GET /openapi.yaml`
 
