@@ -21,13 +21,13 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    command: >
-      -url=jdbc:postgresql://db:5432/${POSTGRES_DB}
-      -user=${POSTGRES_USER}
-      -password=${POSTGRES_PASSWORD}
-      -connectRetries=60
-      -validateMigrationNaming=true
-      migrate
+    environment:
+      FLYWAY_URL: jdbc:postgresql://db:5432/${POSTGRES_DB}
+      FLYWAY_USER: ${POSTGRES_USER}
+      FLYWAY_PASSWORD: ${POSTGRES_PASSWORD}
+      FLYWAY_CONNECT_RETRIES: 60
+      FLYWAY_VALIDATE_MIGRATION_NAMING: "true"
+    command: migrate
     volumes:
       - ./db/migrations:/flyway/sql
 
