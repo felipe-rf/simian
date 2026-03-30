@@ -106,30 +106,8 @@
       no_log: true
       changed_when: true
 
-    - name: Start database service
+    - name: Start application stack
       ansible.builtin.command:
-        cmd: docker compose --env-file .env.deploy -f docker-compose.deploy.yml up -d db
-        chdir: "{{ app_dir }}"
-      changed_when: true
-
-    - name: Run database migrations with Flyway
-      ansible.builtin.command:
-        cmd: docker compose --env-file .env.deploy -f docker-compose.deploy.yml run --rm flyway
-        chdir: "{{ app_dir }}"
-      changed_when: true
-
-    - name: Verify dna table exists
-      ansible.builtin.command:
-        cmd: >
-          docker compose --env-file .env.deploy -f docker-compose.deploy.yml exec -T db
-          psql -U {{ postgres_user }} -d {{ postgres_db }} -tAc "SELECT to_regclass('public.dna');"
-        chdir: "{{ app_dir }}"
-      register: dna_table_check
-      changed_when: false
-      failed_when: "'public.dna' not in dna_table_check.stdout"
-
-    - name: Start API service
-      ansible.builtin.command:
-        cmd: docker compose --env-file .env.deploy -f docker-compose.deploy.yml up -d --pull always --remove-orphans api
+        cmd: docker compose --env-file .env.deploy -f docker-compose.deploy.yml up -d --pull always --remove-orphans
         chdir: "{{ app_dir }}"
       changed_when: true
